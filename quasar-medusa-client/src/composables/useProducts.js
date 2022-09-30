@@ -23,8 +23,18 @@ export default function useProduct () {
     }
   }
 
+  const getProductVariants = async (id) => {
+    try {
+      const { variants } = await medusa.products.variants.retrieve(id) // { products, limit, offset, count }
+      return variants
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
   return {
     listProducts,
+    getProductVariants,
     getProduct
   }
 }

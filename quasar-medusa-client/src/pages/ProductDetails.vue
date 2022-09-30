@@ -66,7 +66,7 @@ export default defineComponent({
   name: 'ProductDetailsPage',
   setup () {
     const product = ref({})
-    const { getProduct } = useProduct()
+    const { getProduct, getProductVariants } = useProduct()
     const route = useRoute()
     const router = useRouter()
     const firstImage = computed(() => product?.value.images ? product.value.images[0].url : '')
@@ -94,7 +94,16 @@ export default defineComponent({
       }
     }
 
+    const handleGetProductVariants = async (id) => {
+      try {
+        await getProductVariants(id)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
     const setVariant = (variantChanged) => {
+      handleGetProductVariants(variantChanged.id)
       variant.value = variantChanged
     }
 
