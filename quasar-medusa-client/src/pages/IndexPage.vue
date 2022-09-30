@@ -21,7 +21,11 @@
 
       <template v-slot:item="props">
         <div class="col-xs-12 col-sm-6 col-md-3">
-          <q-card class="my-card fit" v-ripple:primary>
+          <q-card
+            class="my-card fit"
+            v-ripple:primary
+            @click="handleProdutDetails(props.row.id)"
+          >
             <q-img :src="props.row.images[0].url" ratio="1" />
 
             <q-card-section>
@@ -40,7 +44,8 @@
 
 <script>
 import { defineComponent, onMounted, ref } from 'vue'
-import { medusa } from 'boot/medusaClient'
+import useProduct from 'src/composables/useProducts'
+import { useRouter } from 'vue-router'
 
 const columns = [
   {
@@ -62,20 +67,26 @@ export default defineComponent({
   setup () {
     const productsList = ref([])
     const filter = ref('')
+    const { listProducts } = useProduct()
+    const router = useRouter()
 
     onMounted(() => {
-      getProducts()
+      handleGetproducts()
     })
 
-    const getProducts = () => {
-      medusa.products.list()
-        .then(({ products, limit, offset, count }) => {
-          console.log(products)
-          productsList.value = products
-        })
+    const handleGetproducts = async () => {
+      try {
+        productsList.value = await listProducts()
+      } catch (error) {
+        console.error(error)
+      }
     }
+
+    const handleProdutDetails = (id) => {
+      router.push({ name: 'product-details', params: { id } })
+    }
+
     return {
-      getProducts,
       productsList,
       filter,
       columns,
@@ -84,7 +95,8 @@ export default defineComponent({
         descending: false,
         page: 1,
         rowsPerPage: 12
-      }
+      },
+      handleProdutDetails
     }
   }
 })
