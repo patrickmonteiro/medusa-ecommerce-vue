@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hhh lpR fFr">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -15,7 +15,13 @@
           Quasar Medusa Client
         </q-toolbar-title>
 
-        <!-- <div>Quasar v{{ $q.version }}</div> -->
+        <div>
+          <q-icon
+            name="mdi-account"
+            size="md"
+            @click="toRouteAccount"
+          />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -38,15 +44,77 @@
       </q-list>
     </q-drawer>
 
+    <q-drawer
+      side="right"
+      v-model="cartMenu"
+      elevated
+      :breakpoint="500"
+      behavior="mobile"
+      mobile
+      class="bg-white"
+    >
+      <q-scroll-area class="fit">
+        <q-list separator>
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-avatar rounded>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <div>Medusa T-Shirt</div>
+              <div>R$ 100</div>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="mdi-close-circle-outline" color="negative" />
+            </q-item-section>
+          </q-item>
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-avatar rounded>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <div>Medusa T-Shirt</div>
+              <div>R$ 100</div>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="mdi-close-circle-outline" color="negative" />
+            </q-item-section>
+          </q-item>
+        </q-list>
+        <div class="q-pa-md">
+          <q-btn
+            label="Finalizar compra"
+            icon="mdi-check"
+            color="primary"
+            class="full-width"
+          />
+        </div>
+      </q-scroll-area>
+    </q-drawer>
+
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <q-btn
+        icon="mdi-cart"
+        round
+        color="primary"
+        size="lg"
+        @click="showCartMenu"
+      />
+    </q-page-sticky>
   </q-layout>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import { useRouter } from 'vue-router'
 
 const linksList = [
   {
@@ -102,13 +170,26 @@ export default defineComponent({
 
   setup () {
     const leftDrawerOpen = ref(false)
+    const cartMenu = ref(false)
+    const router = useRouter()
+
+    const showCartMenu = () => {
+      cartMenu.value = !cartMenu.value
+    }
+
+    const toRouteAccount = () => {
+      router.push({ name: 'form-customer' })
+    }
 
     return {
+      cartMenu,
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      },
+      showCartMenu,
+      toRouteAccount
     }
   }
 })
