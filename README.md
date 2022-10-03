@@ -15,6 +15,8 @@ Luique Cruz - [@Luiquecruz](https://github.com/Luiquecruz)
 
 Online store with Medusajs and Quasar Framework(SPA, PWA, App Android/iOS and Desktop with Electron)
 
+### Preview
+
 ## Set up Project
 
 ### Prerequisite
@@ -67,3 +69,9 @@ Install **Quasar CLI** and then start the application with the command:
 ```
 quasar dev
 ```
+
+## Resources
+- [Medusa’s GitHub repository 🔗](https://github.com/medusajs/medusa)
+- [Medusa Admin Panel 🔗](https://github.com/medusajs/admin)
+- [Medusa Documentation 🔗](https://docs.medusajs.com/)
+- [Getting Started Quasar 🔗](https://quasar.dev/start/quasar-cli)
