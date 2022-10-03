@@ -120,7 +120,7 @@
       <router-view />
     </q-page-container>
 
-    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+    <!-- <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn
         icon="mdi-cart"
         round
@@ -128,7 +128,7 @@
         size="lg"
         @click="showCartMenu"
       />
-    </q-page-sticky>
+    </q-page-sticky> -->
   </q-layout>
 </template>
 

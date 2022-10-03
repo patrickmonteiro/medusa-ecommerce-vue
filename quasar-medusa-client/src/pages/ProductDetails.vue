@@ -52,18 +52,23 @@
             />
           </div>
         </div>
-
+      </div>
+      <div class="row">
+        <m-carousel-collection class="col-12"/>
       </div>
   </q-page>
 </template>
 
 <script>
-import { defineComponent, onMounted, ref, computed } from 'vue'
+import { defineComponent, defineAsyncComponent, onMounted, ref, computed } from 'vue'
 import useProduct from 'src/composables/useProducts'
 import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'ProductDetailsPage',
+  components: {
+    MCarouselCollection: defineAsyncComponent(() => import('components/MCarouselCollection.vue'))
+  },
   setup () {
     const product = ref({})
     const { getProduct, getProductVariants } = useProduct()
