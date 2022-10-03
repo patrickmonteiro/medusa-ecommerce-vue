@@ -70,6 +70,18 @@ Install **Quasar CLI** and then start the application with the command:
 quasar dev
 ```
 
+For PWA mode:
+
+```
+quasar dev -m pwa
+```
+
+For desktop mode with electron:
+
+```
+quasar dev -m electron
+```
+
 ## Resources
 - [Medusa’s GitHub repository 🔗](https://github.com/medusajs/medusa)
 - [Medusa Admin Panel 🔗](https://github.com/medusajs/admin)

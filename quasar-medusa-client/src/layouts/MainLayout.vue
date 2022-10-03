@@ -8,6 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
+          class="gt-sm"
           @click="toggleLeftDrawer"
         />
 
@@ -15,17 +16,37 @@
           Quasar Medusa Client
         </q-toolbar-title>
 
-        <div>
+        <!-- <div>
           <q-icon
             name="mdi-account"
             size="md"
             @click="toRouteAccount"
           />
-        </div>
+        </div> -->
       </q-toolbar>
     </q-header>
 
-    <q-drawer
+    <q-footer class="lt-md" elevated>
+      <q-tabs
+        align="justify"
+        dense
+        no-caps
+        indicator-color="white"
+        class="bg-white text-weight-thin text-grey-7"
+        active-color="primary"
+      >
+        <q-route-tab
+          v-for="(tab, index) in tabs"
+          :key="index"
+          :icon="tab.icon"
+          :label="tab.title"
+          content-class="text-weight-thin"
+          :to="{ name: tab.route }"
+        />
+      </q-tabs>
+    </q-footer>
+
+    <!-- <q-drawer
       v-model="leftDrawerOpen"
       bordered
     >
@@ -42,7 +63,7 @@
           v-bind="link"
         />
       </q-list>
-    </q-drawer>
+    </q-drawer> -->
 
     <q-drawer
       side="right"
@@ -113,51 +134,29 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+// import EssentialLink from 'components/EssentialLink.vue'
 import { useRouter } from 'vue-router'
 
-const linksList = [
+const tabs = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Home',
+    icon: 'mdi-home',
+    route: 'home'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    title: 'Colletions',
+    icon: 'mdi-shape-outline',
+    route: 'cash'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    title: 'Cart',
+    icon: 'mdi-cart-outline',
+    route: 'wealth'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: 'Account',
+    icon: 'mdi-account-outline',
+    route: 'form-customer'
   }
 ]
 
@@ -165,7 +164,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    // EssentialLink
   },
 
   setup () {
@@ -183,7 +182,7 @@ export default defineComponent({
 
     return {
       cartMenu,
-      essentialLinks: linksList,
+      tabs,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value

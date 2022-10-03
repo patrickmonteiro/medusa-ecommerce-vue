@@ -2,7 +2,7 @@
   <q-page padding>
     <q-table
       grid
-      title="Produtos"
+      title="Products"
       :rows="productsList"
       :columns="columns"
       row-key="id"
@@ -12,7 +12,7 @@
       card-container-class="q-col-gutter-md"
     >
       <template v-slot:top-right>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Pesquisar">
+        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
           <template v-slot:append>
             <q-icon name="search" />
           </template>
