@@ -1,6 +1,24 @@
 # Medusa Ecommerce Vue 🛒
 
-Online store with Medusajs and Quasar Framework
+## About
+
+
+### Participants
+
+Patrick Monteiro - [@patrickmonteiro](https://github.com/patrickmonteiro)
+
+Luique Cruz - [@Luiquecruz](https://github.com/Luiquecruz)
+
+### Description
+
+Online store with Medusajs and Quasar Framework(SPA, PWA, App Android/iOS and Desktop with Electron)
+
+## Set up Project
+
+### Prerequisite
+Node v14.0 or higher.
+
+## Install Project
 
 ## **medusa-cli**
 
@@ -9,7 +27,7 @@ First install medusa cli in your environment
 ```
 yarn global add @medusajs/medusa-cli
 ```
-
+---
 ## **medusa-server**
 Headless: Medusa is a highly customizable commerce API which means that you may use any presentation layer such as a website, app, chatbots, etc.
 
@@ -23,7 +41,7 @@ or
 ```
 medusa develop
 ```
-
+---
 ## **medusa-admin**
 
 The Medusa Admin provides you with a lot of functionalities and configurations such as Product Management, Order Management, Discounts and Promotions, and more.
@@ -35,7 +53,7 @@ Start development environment:
 ```
 yarn start
 ```
-
+---
 ## **quasar-medusa-client**
 
 A client built with Quasar Framework with version 3 of Vuejs.
