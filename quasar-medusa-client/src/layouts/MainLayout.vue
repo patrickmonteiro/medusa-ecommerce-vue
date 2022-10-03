@@ -46,7 +46,7 @@
       </q-tabs>
     </q-footer>
 
-    <!-- <q-drawer
+    <q-drawer
       v-model="leftDrawerOpen"
       bordered
     >
@@ -58,12 +58,12 @@
         </q-item-label>
 
         <EssentialLink
-          v-for="link in essentialLinks"
+          v-for="link in tabs"
           :key="link.title"
           v-bind="link"
         />
       </q-list>
-    </q-drawer> -->
+    </q-drawer>
 
     <q-drawer
       side="right"
@@ -134,7 +134,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-// import EssentialLink from 'components/EssentialLink.vue'
+import EssentialLink from 'components/EssentialLink.vue'
 import { useRouter } from 'vue-router'
 
 const tabs = [
@@ -164,7 +164,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    // EssentialLink
+    EssentialLink
   },
 
   setup () {
