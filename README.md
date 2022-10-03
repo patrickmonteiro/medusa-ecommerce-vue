@@ -1,5 +1,7 @@
 # Medusa Ecommerce Vue 🛒
 
+<img src="./docs/logo-github.png">
+
 ## About
 
 
