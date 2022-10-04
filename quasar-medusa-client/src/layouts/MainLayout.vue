@@ -13,7 +13,9 @@
         />
 
         <q-toolbar-title>
-          Quasar Medusa Client
+          <q-btn flat size="lg" :to="{ name: 'home' }">
+            Quasar Medusa Client
+          </q-btn>
         </q-toolbar-title>
 
         <!-- <div>
@@ -120,7 +122,7 @@
       <router-view />
     </q-page-container>
 
-    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+    <!-- <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn
         icon="mdi-cart"
         round
@@ -128,7 +130,7 @@
         size="lg"
         @click="showCartMenu"
       />
-    </q-page-sticky>
+    </q-page-sticky> -->
   </q-layout>
 </template>
 
