@@ -51,16 +51,27 @@
               :class="$q.platform.is.mobile ? 'full-width q-mb-md' : ''"
             />
           </div>
+          <div class="q-mt-md">
+            <p class="text-body1">See this product with augmented reality!</p>
+            <p class="text-body1">Access our 3D viewer on your mobile, and point to the product image!</p>
+            <q-img src="/qrcode-arjs.png" width="150px" />
+          </div>
         </div>
       </div>
-      <div class="row justify-center">
-        <m-carousel-collection class="col-md-8 col-sm-10 col-xs-12"/>
+      <div
+        v-if="product.collection_id"
+        class="row justify-center"
+      >
+        <m-carousel-collection
+          :collectionId="product.collection_id"
+          class="col-md-8 col-sm-10 col-xs-12"
+        />
       </div>
   </q-page>
 </template>
 
 <script>
-import { defineComponent, defineAsyncComponent, onMounted, ref, computed } from 'vue'
+import { defineComponent, defineAsyncComponent, onMounted, ref, computed, watchEffect } from 'vue'
 import useProduct from 'src/composables/useProducts'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -76,6 +87,7 @@ export default defineComponent({
     const router = useRouter()
     const firstImage = computed(() => product?.value.images ? product.value.images[0].url : '')
     const variant = ref(null)
+    const showAr = ref(false)
 
     const priceVariant = computed(() => {
       const variantChanged = variant.value?.prices[variant.value.prices.length - 1] || ''
@@ -92,12 +104,19 @@ export default defineComponent({
 
     const handleGetProductDetails = async (id) => {
       try {
-        product.value = await getProduct(id)
-        console.log(product.value.images[0].url)
+        const data = await getProduct(id)
+        product.value = data
+        verifyTagAr(product.value.tags)
       } catch (error) {
         console.error(error)
       }
     }
+
+    watchEffect(async () => {
+      if (route.params.id) {
+        await handleGetProductDetails(route.params.id)
+      }
+    })
 
     const handleGetProductVariants = async (id) => {
       try {
@@ -110,6 +129,15 @@ export default defineComponent({
     const setVariant = (variantChanged) => {
       handleGetProductVariants(variantChanged.id)
       variant.value = variantChanged
+    }
+
+    const verifyTagAr = (tagsArray) => {
+      const tags = tagsArray.map((tag) => tag.value)
+      if (tags.includes('AR')) {
+        showAr.value = true
+      } else {
+        showAr.value = false
+      }
     }
 
     return {
