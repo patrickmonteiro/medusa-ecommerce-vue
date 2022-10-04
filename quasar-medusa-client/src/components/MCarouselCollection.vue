@@ -15,10 +15,10 @@
       height="500px"
     >
       <q-carousel-slide
-        v-for="item in items"
+        v-for="item in collections"
         :key="item.id"
         :name="item.id"
-        :img-src="item.imgUrl"
+        :img-src="item.thumbnail"
         >
         <div class="absolute-bottom custom-caption text-center">
           <div class="text-h6">{{ item.title }}</div>
@@ -31,28 +31,28 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import useCollections from 'src/composables/useCollections'
 
-const items = [
-  {
-    title: 'T-shirt',
-    imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
-    id: 1
-  },
-  {
-    title: 'T-shirt 2',
-    imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
-    id: 2
-  },
-  {
-    title: 'T-shirt 3',
-    imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
-    id: 3
-  }
-]
+// const items = [
+//   {
+//     title: 'T-shirt',
+//     imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
+//     id: 1
+//   },
+//   {
+//     title: 'T-shirt 2',
+//     imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
+//     id: 2
+//   },
+//   {
+//     title: 'T-shirt 3',
+//     imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
+//     id: 3
+//   }
+// ]
 
 export default defineComponent({
   name: 'MCarouselCollection',
   setup () {
-    const slide = ref(1)
+    const slide = ref('')
     const collections = ref([])
     const { getColletion } = useCollections()
 
@@ -62,7 +62,10 @@ export default defineComponent({
 
     const handleGetCollection = async () => {
       try {
-        collections.value = await getColletion('pcol_01GEFYGW4J9F0234MX05K31PMY')
+        const { products } = await getColletion('pcol_01GEFYGW4J9F0234MX05K31PMY')
+        slide.value = products[0].id
+        console.log(products)
+        collections.value = products
       } catch (error) {
         console.error(error)
       }
@@ -70,7 +73,8 @@ export default defineComponent({
 
     return {
       slide,
-      items
+      // items,
+      collections
     }
   }
 })
