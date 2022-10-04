@@ -19,6 +19,7 @@
         :key="item.id"
         :name="item.id"
         :img-src="item.thumbnail"
+        @click="goToProduct(item.id)"
         >
         <div class="absolute-bottom custom-caption text-center">
           <div class="text-h6">{{ item.title }}</div>
@@ -30,31 +31,22 @@
 <script>
 import { defineComponent, onMounted, ref } from 'vue'
 import useCollections from 'src/composables/useCollections'
-
-// const items = [
-//   {
-//     title: 'T-shirt',
-//     imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
-//     id: 1
-//   },
-//   {
-//     title: 'T-shirt 2',
-//     imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
-//     id: 2
-//   },
-//   {
-//     title: 'T-shirt 3',
-//     imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
-//     id: 3
-//   }
-// ]
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'MCarouselCollection',
-  setup () {
+  props: {
+    collectionId: {
+      type: String,
+      required: true,
+      default: ''
+    }
+  },
+  setup (props) {
     const slide = ref('')
     const collections = ref([])
     const { getColletion } = useCollections()
+    const router = useRouter()
 
     onMounted(() => {
       handleGetCollection()
@@ -62,19 +54,23 @@ export default defineComponent({
 
     const handleGetCollection = async () => {
       try {
-        const { products } = await getColletion('pcol_01GEFYGW4J9F0234MX05K31PMY')
+        const { products } = await getColletion(props.collectionId)
         slide.value = products[0].id
-        console.log(products)
         collections.value = products
       } catch (error) {
         console.error(error)
       }
     }
 
+    const goToProduct = (id) => {
+      router.push({ name: 'product-details', params: { id } })
+    }
+
     return {
       slide,
       // items,
-      collections
+      collections,
+      goToProduct
     }
   }
 })
