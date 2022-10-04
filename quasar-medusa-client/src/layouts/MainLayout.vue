@@ -5,7 +5,6 @@
         <q-btn
           flat
           dense
-          round
           icon="menu"
           aria-label="Menu"
           class="gt-sm"
@@ -19,7 +18,12 @@
         </q-toolbar-title>
 
         <div>
-          <q-btn-dropdown color="white" icon="person" flat>
+          <q-btn-dropdown
+            color="white"
+            icon="person"
+            flat
+            dense
+          >
             <q-list>
               <q-item clickable v-close-popup to="/login">
                 <q-item-section>
@@ -34,6 +38,15 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
+
+          <q-btn
+            class="q-ml-md"
+            color="white"
+            icon="mdi-cart"
+            @click="showCartMenu"
+            dense
+            flat
+          />
         </div>
       </q-toolbar>
     </q-header>
@@ -58,6 +71,7 @@
       </q-tabs>
     </q-footer>
 
+    <!-- side menu -->
     <q-drawer
       v-model="leftDrawerOpen"
       bordered
@@ -71,6 +85,7 @@
       </q-list>
     </q-drawer>
 
+    <!-- cart -->
     <q-drawer
       side="right"
       v-model="cartMenu"
@@ -82,7 +97,7 @@
     >
       <q-scroll-area class="fit">
         <q-list separator>
-          <q-item clickable v-ripple>
+          <q-item v-for="i in 8" :key="i" clickable v-ripple>
             <q-item-section avatar>
               <q-avatar rounded>
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="placeholder" />
@@ -95,24 +110,7 @@
             </q-item-section>
 
             <q-item-section side>
-              <q-icon name="mdi-close-circle-outline" color="negative" />
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar rounded>
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="placeholder" />
-              </q-avatar>
-            </q-item-section>
-
-            <q-item-section>
-              <div>Medusa T-Shirt</div>
-              <div>R$ 100</div>
-            </q-item-section>
-
-            <q-item-section side>
-              <q-icon name="mdi-close-circle-outline" color="negative" />
+              <q-icon name="mdi-close" color="gray" />
             </q-item-section>
           </q-item>
         </q-list>
@@ -120,9 +118,12 @@
         <div class="q-pa-md">
           <q-btn
             label="Finalizar compra"
-            icon="mdi-check"
+            icon-right="mdi-check"
             color="primary"
+            align="between"
             class="full-width"
+            size="lg"
+            no-caps
           />
         </div>
       </q-scroll-area>
@@ -131,16 +132,6 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-
-    <!-- <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn
-        icon="mdi-cart"
-        round
-        color="primary"
-        size="lg"
-        @click="showCartMenu"
-      />
-    </q-page-sticky> -->
   </q-layout>
 </template>
 
