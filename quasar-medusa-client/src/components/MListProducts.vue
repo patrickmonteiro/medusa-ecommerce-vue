@@ -25,7 +25,7 @@
             v-ripple:primary
             @click="handleProdutDetails(props.row.id)"
           >
-            <q-img :src="props.row.images[0].url" ratio="1" />
+            <q-img :src="props.row.thumbnail" ratio="1" />
 
             <q-card-section>
               <div class="text-subtitle2">{{ props.row.title }}</div>

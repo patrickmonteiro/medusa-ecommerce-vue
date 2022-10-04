@@ -14,17 +14,17 @@
 
         <q-toolbar-title>
           <q-btn flat size="lg" :to="{ name: 'home' }">
-            Quasar Medusa Client
+            Quasar Medusa
           </q-btn>
         </q-toolbar-title>
 
-        <!-- <div>
+        <div>
           <q-icon
-            name="mdi-account"
-            size="md"
-            @click="toRouteAccount"
+            name="mdi-cart"
+            size="sm"
+            @click="showCartMenu"
           />
-        </div> -->
+        </div>
       </q-toolbar>
     </q-header>
 
