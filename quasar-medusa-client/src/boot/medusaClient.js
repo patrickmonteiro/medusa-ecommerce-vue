@@ -2,7 +2,7 @@ import { boot } from 'quasar/wrappers'
 import Medusa from '@medusajs/medusa-js'
 
 const medusa = new Medusa({
-  baseUrl: process.env.MEDUSA_BASE_URL | 'http://localhost:9000',
+  baseUrl: process.env.MEDUSA_BASE_URL,
   apiKey: '',
   maxRetries: 3
 })
