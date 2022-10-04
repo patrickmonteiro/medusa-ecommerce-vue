@@ -18,13 +18,23 @@
           </q-btn>
         </q-toolbar-title>
 
-        <!-- <div>
-          <q-icon
-            name="mdi-account"
-            size="md"
-            @click="toRouteAccount"
-          />
-        </div> -->
+        <div>
+          <q-btn-dropdown color="white" icon="person" flat>
+            <q-list>
+              <q-item clickable v-close-popup to="/login">
+                <q-item-section>
+                  <q-item-section>Login</q-item-section>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup to="/register">
+                <q-item-section>
+                  <q-item-section>Register</q-item-section>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -78,35 +88,24 @@
     >
       <q-scroll-area class="fit">
         <q-list separator>
-          <q-item clickable v-ripple>
+          <q-item v-for="i in 5" :key="i" clickable v-ripple>
             <q-item-section avatar>
               <q-avatar rounded>
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="placeholder" />
               </q-avatar>
             </q-item-section>
+
             <q-item-section>
               <div>Medusa T-Shirt</div>
               <div>R$ 100</div>
             </q-item-section>
-            <q-item-section side>
-              <q-icon name="mdi-close-circle-outline" color="negative" />
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar rounded>
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div>Medusa T-Shirt</div>
-              <div>R$ 100</div>
-            </q-item-section>
+
             <q-item-section side>
               <q-icon name="mdi-close-circle-outline" color="negative" />
             </q-item-section>
           </q-item>
         </q-list>
+
         <div class="q-pa-md">
           <q-btn
             label="Finalizar compra"
