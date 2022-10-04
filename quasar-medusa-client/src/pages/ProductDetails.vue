@@ -53,8 +53,8 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <m-carousel-collection class="col-12"/>
+      <div class="row justify-center">
+        <m-carousel-collection class="col-md-8 col-sm-10 col-xs-12"/>
       </div>
   </q-page>
 </template>

@@ -13,7 +13,9 @@
         />
 
         <q-toolbar-title>
-          Quasar Medusa Client
+          <q-btn flat size="lg" :to="{ name: 'home' }">
+            Quasar Medusa Client
+          </q-btn>
         </q-toolbar-title>
 
         <!-- <div>

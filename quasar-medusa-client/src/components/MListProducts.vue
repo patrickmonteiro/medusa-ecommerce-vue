@@ -29,9 +29,9 @@
 
             <q-card-section>
               <div class="text-subtitle2">{{ props.row.title }}</div>
-              <div class="text-subtitle1">
+              <!-- <div class="text-subtitle1">
                 R$ 100
-              </div>
+              </div> -->
             </q-card-section>
             <!-- <q-card-section class="q-pt-none">
               {{ props.row.description }}

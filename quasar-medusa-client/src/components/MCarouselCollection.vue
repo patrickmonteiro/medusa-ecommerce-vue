@@ -1,5 +1,5 @@
 <template>
-  <div class="lt-sm">
+  <div class="">
    <div class="text-h5 text-center q-mt-md">
     Othes Products
    </div>
@@ -12,24 +12,16 @@
       control-color="primary"
       padding
       arrows
-      height="300px"
+      height="500px"
     >
       <q-carousel-slide
-        :name="1"
-        img-src="https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png"
+        v-for="item in items"
+        :key="item.id"
+        :name="item.id"
+        :img-src="item.imgUrl"
         >
         <div class="absolute-bottom custom-caption text-center">
-          <div class="text-h6">T-shirt</div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide :name="2" img-src="https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png">
-        <div class="absolute-bottom custom-caption text-center">
-          <div class="text-h6">T-shirt</div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide :name="3" img-src="https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png">
-        <div class="absolute-bottom custom-caption text-center">
-          <div class="text-h6">T-shirt</div>
+          <div class="text-h6">{{ item.title }}</div>
         </div>
       </q-carousel-slide>
     </q-carousel>
@@ -38,6 +30,24 @@
 <script>
 import { defineComponent, onMounted, ref } from 'vue'
 import useCollections from 'src/composables/useCollections'
+
+const items = [
+  {
+    title: 'T-shirt',
+    imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
+    id: 1
+  },
+  {
+    title: 'T-shirt 2',
+    imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
+    id: 2
+  },
+  {
+    title: 'T-shirt 3',
+    imgUrl: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png',
+    id: 3
+  }
+]
 
 export default defineComponent({
   name: 'MCarouselCollection',
@@ -59,7 +69,8 @@ export default defineComponent({
     }
 
     return {
-      slide
+      slide,
+      items
     }
   }
 })
