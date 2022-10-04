@@ -63,12 +63,6 @@
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
         <EssentialLink
           v-for="link in tabs"
           :key="link.title"
@@ -88,7 +82,24 @@
     >
       <q-scroll-area class="fit">
         <q-list separator>
-          <q-item v-for="i in 5" :key="i" clickable v-ripple>
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-avatar rounded>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="placeholder" />
+              </q-avatar>
+            </q-item-section>
+
+            <q-item-section>
+              <div>Medusa T-Shirt</div>
+              <div>R$ 100</div>
+            </q-item-section>
+
+            <q-item-section side>
+              <q-icon name="mdi-close-circle-outline" color="negative" />
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-avatar rounded>
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="placeholder" />
@@ -157,7 +168,7 @@ const tabs = [
   {
     title: 'Account',
     icon: 'mdi-account-outline',
-    route: 'form-customer'
+    route: 'login'
   }
 ]
 
