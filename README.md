@@ -17,6 +17,29 @@ Online store with Medusajs and Quasar Framework(SPA, PWA, App Android/iOS and De
 
 ### Preview
 
+Desktop Browser
+
+<img src="./docs/Browser1.png">
+
+<img src="./docs/Browser2.png">
+
+**3D Mobile View**
+- Access the app using the QRCode above and point the camera at the Sandal. We have few examples available.
+
+<img src="./docs/3DMode.png">
+
+Mobile Browser
+
+<img src="./docs/mobile.png">
+
+App Desktop with Electron
+
+<img src="./docs/App-desktop-electron.png">
+
+Hybrid app with Capacitor
+
+<img src="./docs/capacitor.png">
+
 ## Set up Project
 
 ### Prerequisite
@@ -64,6 +87,9 @@ A client built with Quasar Framework with version 3 of Vuejs.
 
 [Getting Started Quasar 🔗](https://quasar.dev/start/quasar-cli)
 
+By default the **web mode** is what will work in your traditional environment.
+For the other modes, you will need to configure the development environment as per the Quasar documentation.
+
 Install **Quasar CLI** and then start the application with the command:
 
 ```
@@ -74,6 +100,12 @@ For PWA mode:
 
 ```
 quasar dev -m pwa
+```
+
+For Capacitor mode:
+
+```
+quasar dev -m capacitor -T android
 ```
 
 For desktop mode with electron:
