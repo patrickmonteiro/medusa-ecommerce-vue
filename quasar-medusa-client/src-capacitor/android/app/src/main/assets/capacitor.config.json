@@ -1,0 +1,10 @@
+{
+  "appId": "org.capacitor.quasar.app",
+  "appName": "Quasar Medusa Client",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www",
+  "server": {
+    "url": "https://192.168.0.6:9500"
+  }
+}
