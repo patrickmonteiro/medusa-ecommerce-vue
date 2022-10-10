@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          <q-btn flat size="lg" :to="{ name: 'home' }">
+          <q-btn flat no-caps size="lg" :to="{ name: 'home' }">
             Quasar Medusa Client
           </q-btn>
         </q-toolbar-title>
@@ -96,26 +96,43 @@
       class="bg-white"
     >
       <q-scroll-area class="fit">
-        <q-list separator>
-          <q-item v-for="i in 8" :key="i" clickable v-ripple>
+        <div class="fixed-top bg-white bring-it-up q-pl-md q-pr-xs q-py-md flex justify-between">
+          <h5 class="text-h5 q-my-none">My cart</h5>
+          <q-btn
+            icon="mdi-close"
+            @click="showCartMenu"
+            color="grey-5"
+            flat
+          />
+        </div>
+
+        <q-list separator class="q-py-xl q-mt-md q-mb-xl">
+          <q-item v-for="i in 24" :key="i" clickable>
             <q-item-section avatar>
-              <q-avatar rounded>
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="placeholder" />
+              <q-avatar rounded v-ripple>
+                <img :src="`https://picsum.photos/id/${Math.ceil(Math.random() * (0 - 6) + 6)}/40/40.webp`"
+                     alt="placeholder" />
               </q-avatar>
             </q-item-section>
 
             <q-item-section>
-              <div>Medusa T-Shirt</div>
+              <div>Medusa sample product</div>
               <div>R$ 100</div>
             </q-item-section>
 
             <q-item-section side>
-              <q-icon name="mdi-close" color="gray" />
+              <q-btn
+                icon="mdi-delete"
+                color="grey-5"
+                dense
+                flat
+                v-ripple
+              />
             </q-item-section>
           </q-item>
         </q-list>
 
-        <div class="q-pa-md">
+        <div class="fixed-bottom bg-white q-pa-md">
           <q-btn
             label="Finalizar compra"
             icon-right="mdi-check"
@@ -137,8 +154,9 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
 import { useRouter } from 'vue-router'
+
+import EssentialLink from 'components/EssentialLink.vue'
 
 const tabs = [
   {
@@ -150,11 +168,6 @@ const tabs = [
     title: 'Colletions',
     icon: 'mdi-shape-outline',
     route: 'cash'
-  },
-  {
-    title: 'Cart',
-    icon: 'mdi-cart-outline',
-    route: 'wealth'
   },
   {
     title: 'Account',
@@ -180,19 +193,25 @@ export default defineComponent({
     }
 
     const toRouteAccount = () => {
-      router.push({ name: 'form-customer' })
+      router.push({ name: 'login' })
     }
 
     return {
       cartMenu,
       tabs,
       leftDrawerOpen,
+      showCartMenu,
+      toRouteAccount,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      },
-      showCartMenu,
-      toRouteAccount
+      }
     }
   }
 })
 </script>
+
+<style scoped>
+  .bring-it-up {
+    z-index: 99;
+  }
+</style>
