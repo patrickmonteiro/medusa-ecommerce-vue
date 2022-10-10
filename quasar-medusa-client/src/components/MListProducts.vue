@@ -1,45 +1,39 @@
 <template>
   <q-table
-      grid
-      title="Products"
-      :rows="productsList"
-      :columns="columns"
-      row-key="id"
-      :filter="filter"
-      hide-header
-      :pagination="initialPagination"
-      card-container-class="q-col-gutter-md"
-    >
-      <template v-slot:top-right>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </template>
+    grid
+    title="Products"
+    :rows="productsList"
+    :columns="columns"
+    row-key="id"
+    :filter="filter"
+    hide-header
+    :pagination="initialPagination"
+    card-container-class="q-col-gutter-lg"
+  >
+    <template v-slot:top-right>
+      <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+        <template v-slot:append>
+          <q-icon name="search" />
+        </template>
+      </q-input>
+    </template>
 
-      <template v-slot:item="props">
-        <div class="col-xs-6 col-sm-6 col-md-3">
-          <q-card
-            class="my-card fit"
-            v-ripple:primary
-            @click="handleProdutDetails(props.row.id)"
-          >
-            <q-img :src="props.row.images[0].url" ratio="1" />
+    <template v-slot:item="props">
+      <div class="col-xs-6 col-sm-4 col-md-3">
+        <q-card
+          class="my-card fit"
+          v-ripple:primary
+          @click="handleProdutDetails(props.row.id)"
+        >
+          <q-img :src="props.row.images[0].url" ratio="1" />
 
-            <q-card-section>
-              <div class="text-subtitle2">{{ props.row.title }}</div>
-              <!-- <div class="text-subtitle1">
-                R$ 100
-              </div> -->
-            </q-card-section>
-            <!-- <q-card-section class="q-pt-none">
-              {{ props.row.description }}
-            </q-card-section> -->
-          </q-card>
-        </div>
-      </template>
-    </q-table>
+          <q-card-section>
+            <div class="text-subtitle2">{{ props.row.title }}</div>
+          </q-card-section>
+        </q-card>
+      </div>
+    </template>
+  </q-table>
 </template>
 
 <script>
