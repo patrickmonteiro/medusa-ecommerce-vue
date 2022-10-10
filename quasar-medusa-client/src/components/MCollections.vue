@@ -1,8 +1,8 @@
 <template>
   <section class="related full-width q-py-xl">
-   <h4 class="text-h4 text-center q-mt-none q-mb-xl">
-    You might also like
-   </h4>
+    <h4 class="text-h4 text-center q-mt-none q-mb-xl">
+      You might also like
+    </h4>
 
     <div class="q-table__grid-content row q-col-gutter-lg">
       <div
