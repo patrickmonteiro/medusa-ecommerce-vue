@@ -167,7 +167,7 @@ const tabs = [
   {
     title: 'Colletions',
     icon: 'mdi-shape-outline',
-    route: 'cash'
+    route: 'collections'
   },
   {
     title: 'Account',
